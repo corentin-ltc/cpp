@@ -14,15 +14,17 @@ INCLUDES =	includes \
 ######################## SOURCES ########################
 
 
-SRCS_NAMES =	main.cpp
+SRCS_NAMES =	main.cpp \
+				Contact.cpp \
+				PhoneBook.cpp
 
-SRCS_DIR = ./
+SRCS_DIR = srcs/
 
 SRCS = ${addprefix ${SRCS_DIR}, ${SRCS_NAMES}}
 
-OBJS_DIR = ./
+OBJS_DIR = objs/
 
-OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.c=.o}}
+OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.cpp=.o}}
 
 ######################## BASIC RULES ########################
 
@@ -33,9 +35,12 @@ re : fclean
 	${MAKE} all
 
 clean :
-	rm -rf ${NAME}
+	${foreach lib, ${LIBS}, ${MAKE} clean -C ${lib}}
+	rm -rf ${OBJS_DIR}
 
 fclean : clean
+	${foreach lib, ${LIBS}, ${MAKE} fclean -C ${lib}}
+	rm -f ${NAME}
 
 ######################## COMPILATION ########################
 
@@ -43,14 +48,10 @@ ${NAME} : ${OBJS_DIR} ${OBJS}
 	${foreach lib, ${LIBS}, ${MAKE} -C ${lib}}
 	${CC} ${FLAGS} ${OBJS} ${foreach lib, ${LIBS},${lib}/${lib}.a} -o $@ ${EXTRAFLAGS}
 
-debug : ${OBJS_DIR} ${OBJS}
-	${foreach lib, ${LIBS}, ${MAKE} -C ${lib}}
-	${CC} ${FLAGS} -g3 -fsanitize=address ${OBJS} ${foreach lib, ${LIBS},${lib}/${lib}.a} -o ${NAME} ${EXTRAFLAGS}
-
 ${OBJS_DIR} :
 	mkdir $@
 
-${OBJS_DIR}%.o : ${SRCS_DIR}%.c
+${OBJS_DIR}%.o : ${SRCS_DIR}%.cpp
 	${CC} ${FLAGS} ${CPPFLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@
 
 ######################## TEST ########################
