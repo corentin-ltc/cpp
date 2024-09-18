@@ -17,6 +17,8 @@ void Contact::fill_contact(){
 	std::getline(std::cin, darkest_secret);
 }
 
+// TODO: Refuse empty inputs
+
 bool Contact::is_slot_taken(){
-	return (this->slot_taken);
+	return (slot_taken);
 }

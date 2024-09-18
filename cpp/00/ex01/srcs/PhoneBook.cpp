@@ -16,6 +16,17 @@ void PhoneBook::add_a_contact(){
 
 	int index;
 
-	index = this->get_index();
-	this->contacts[index].fill_contact();
+	index = get_index();
+	contacts[index].fill_contact();
+}
+
+void PhoneBook::display_contacts(){
+
+	for (int i = 0; i < 8 && contacts[i].is_slot_taken() ; i++)
+	{
+		std::cout << "Index : " << i << "|";
+		for (int j = 0; j < 10 && contacts[i].first_name[j]; j++)
+			std::cout << contacts[i].first_name;
+		
+	}
 }

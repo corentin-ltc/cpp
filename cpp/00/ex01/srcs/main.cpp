@@ -12,7 +12,7 @@ int main(void){
 		std::cin.ignore();
 		if (input == "ADD")
 			phonebook.add_a_contact();
-		 if (input == "SEACH")
+		 if (input == "SEARCH")
 		 	phonebook.display_contacts();
 		std::cout << "Enter command (ADD, SEARCH, EXIT): " << std::endl;
 	}
