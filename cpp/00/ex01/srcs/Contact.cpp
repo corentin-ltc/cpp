@@ -5,19 +5,23 @@ void Contact::fill_contact(){
 	std::string	input;
 
 	slot_taken = true;
-	std::cout << "Enter first name: ";
-	std::getline(std::cin, first_name);
-	std::cout << "Enter last name: ";
-	std::getline(std::cin, last_name);
-	std::cout << "Enter nickname: ";
-	std::getline(std::cin, nickname);
-	std::cout << "Enter phone number: ";
-	std::getline(std::cin, phone_number);
-	std::cout << "Enter darkest secret: ";
-	std::getline(std::cin, darkest_secret);
+	first_name = get_input("Enter first name: ");
+	last_name = get_input("Enter last name: ");
+	nickname = get_input("Enter nickname: ");
+	darkest_secret = get_input("Enter darkest secret: ");
+	phone_number = get_input("Enter phone number: ");
 }
 
-// TODO: Refuse empty inputs
+std::string Contact::get_input(std::string prompt){
+
+	std::string	input;
+
+	do{
+		std::cout << prompt;
+		getline(std::cin, input);
+	} while (input == "");
+	return (input);
+}
 
 bool Contact::is_slot_taken(){
 	return (slot_taken);

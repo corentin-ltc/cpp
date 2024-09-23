@@ -14,7 +14,8 @@ int main(void){
 			phonebook.add_a_contact();
 		 if (input == "SEARCH")
 		 	phonebook.display_contacts();
-		std::cout << "Enter command (ADD, SEARCH, EXIT): " << std::endl;
+		if (input != "EXIT")
+			std::cout << std::endl << "Enter command (ADD, SEARCH, EXIT): " << std::endl;
 	}
 	while (input != "EXIT");
 	return 0;

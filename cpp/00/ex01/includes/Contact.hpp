@@ -19,6 +19,7 @@ class Contact {
 
 		bool is_slot_taken();
 		void fill_contact();
+		std::string get_input(std::string prompt);
 };
 
 #endif
