@@ -1,6 +1,6 @@
 ######################## SETTINGS ########################
 
-NAME = megaphone
+NAME = bank
 
 CC = c++
 
@@ -8,19 +8,19 @@ FLAGS = -Wall -Wextra -Werror
 
 EXTRAFLAGS = -std=c++98
 
-INCLUDES =	includes \
-			${foreach lib, ${LIBS}, ${lib} ${lib}/includes}
+INCLUDES =	../Account.hpp
 
 ######################## SOURCES ########################
 
 
-SRCS_NAMES =	megaphone.cpp
+SRCS_NAMES =	tests.cpp \
+				Account.cpp 
 
 SRCS_DIR = ./
 
 SRCS = ${addprefix ${SRCS_DIR}, ${SRCS_NAMES}}
 
-OBJS_DIR = ./
+OBJS_DIR = objs/
 
 OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.cpp=.o}}
 
@@ -33,19 +33,18 @@ re : fclean
 	${MAKE} all
 
 clean :
-	rm -rf ${NAME}
+	${foreach lib, ${LIBS}, ${MAKE} clean -C ${lib}}
+	rm -rf ${OBJS_DIR}
 
 fclean : clean
+	${foreach lib, ${LIBS}, ${MAKE} fclean -C ${lib}}
+	rm -f ${NAME}
 
 ######################## COMPILATION ########################
 
 ${NAME} : ${OBJS_DIR} ${OBJS}
 	${foreach lib, ${LIBS}, ${MAKE} -C ${lib}}
 	${CC} ${FLAGS} ${OBJS} ${foreach lib, ${LIBS},${lib}/${lib}.a} -o $@ ${EXTRAFLAGS}
-
-debug : ${OBJS_DIR} ${OBJS}
-	${foreach lib, ${LIBS}, ${MAKE} -C ${lib}}
-	${CC} ${FLAGS} -g3 -fsanitize=address ${OBJS} ${foreach lib, ${LIBS},${lib}/${lib}.a} -o ${NAME} ${EXTRAFLAGS}
 
 ${OBJS_DIR} :
 	mkdir $@
