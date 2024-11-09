@@ -6,5 +6,6 @@ int main(void)
 
 	randomChump("Marylin");
 	alien = newZombie("POOK");
+	alien->announce();
 	delete alien;
 }
