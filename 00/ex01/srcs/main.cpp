@@ -8,8 +8,8 @@ int main(void){
 
 	std::cout << "Enter command (ADD, SEARCH, EXIT): " << std::endl;
 	do{
-		std::cin >> input;
-		std::cin.ignore();
+		if (!getline(std::cin, input))
+			return 0;
 		if (input == "ADD")
 			phonebook.add_a_contact();
 		 if (input == "SEARCH")

@@ -16,9 +16,9 @@ void PhoneBook::display_contacts(){
 	for (int i = 0; i < 8 && contacts[i].is_slot_taken() ; i++)
 	{
 		std::cout << "|         " << i + 1 << '|';
-		display_values(&(contacts[i].first_name));
-		display_values(&(contacts[i].last_name));
-		display_values(&(contacts[i].nickname));
+		display_values((contacts[i].display_first_name()));
+		display_values((contacts[i].display_last_name()));
+		display_values((contacts[i].display_nickname()));
 		std::cout << std::endl;
 	}
 	std::cout << "|___________________________________________|" << std::endl;
@@ -38,32 +38,33 @@ void PhoneBook::search_contact(){
 
 	do{
 		std::cout << "Enter a valid contact index or \"LEAVE\" to leave: " << std::endl;
-		getline(std::cin, input);
+		if (!getline(std::cin, input))
+			exit(EXIT_FAILURE);
 		if (input == "LEAVE")
 			return ;
 	} while (!is_index_valid(input));
-	std::cout << "First name: " << contacts[input[0] - 49].first_name << std::endl;
-	std::cout << "Last name: " << contacts[input[0] - 49].last_name << std::endl;
-	std::cout << "Nickname: " << contacts[input[0] - 49].nickname << std::endl;
-	std::cout << "Phone number: " << contacts[input[0] - 49].phone_number << std::endl;
-	std::cout << "Darkest secret: " << contacts[input[0] - 49].darkest_secret << std::endl;
+	std::cout << "First name: " << contacts[input[0] - 49].display_first_name() << std::endl;
+	std::cout << "Last name: " << contacts[input[0] - 49].display_last_name() << std::endl;
+	std::cout << "Nickname: " << contacts[input[0] - 49].display_nickname() << std::endl;
+	std::cout << "Phone number: " << contacts[input[0] - 49].display_phone_number() << std::endl;
+	std::cout << "Darkest secret: " << contacts[input[0] - 49].display_darkest_secret() << std::endl;
 }
 
-void PhoneBook::display_values(std::string *category){
+void PhoneBook::display_values(std::string category){
 
 	bool is_truncated = true;
 
-	for (int j = 0; category->length() + j < 10; j++){
+	for (int j = 0; category.length() + j < 10; j++){
 			std::cout << ' ';
 			is_truncated = false;
 		}
-		for (int j = 0; j < 10 && (*category)[j]; j++)
+		for (int j = 0; j < 10 && (category)[j]; j++)
 		{
 			if (is_truncated && j == 9 ){
 				std::cout << '.';
 				break;
 			}
-			std::cout << (*category)[j];
+			std::cout << (category)[j];
 		}
 		std::cout << "|";
 }

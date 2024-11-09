@@ -13,7 +13,7 @@ class PhoneBook {
 		void	add_a_contact();
 		void	display_contacts();
 		void	search_contact();
-		void	display_values(std::string *category);
+		void	display_values(std::string category);
 		bool	is_index_valid(std::string index);
 };
 
