@@ -1,9 +1,11 @@
-#include <iostream>
-#include "Weapon.hpp"
+#include <Weapon.hpp>
 
 class HumanB{
 	private:
-		Weapon type;
+		Weapon weapon;
 		std::string name;
-	void attack()
+	public:
+		HumanB(std::string name);
+		void attack();
+		void setWeapon(Weapon new_weapon);
 };
