@@ -11,7 +11,7 @@ void Harl::info(void)
 }
 void Harl::warning(void)
 {
-	std::cout << " WARNING : I think I deserve to have some extra bacon for free. I've been comingfor years whereas you started working here since last month" << std::endl;
+	std::cout << "WARNING : I think I deserve to have some extra bacon for free. I've been comingfor years whereas you started working here since last month" << std::endl;
 }
 void Harl::error(void)
 {
@@ -19,5 +19,15 @@ void Harl::error(void)
 }
 void Harl::complain(std::string level)
 {
-	level();
+    std::map<std::string, void (Harl::*)(void)> map = 
+	{
+		{"debug", &Harl::debug},
+		{"info", &Harl::info},
+		{"warning", &Harl::warning},
+		{"error", &Harl::error}
+	};
+	if (map.find(level) != map.end())
+		(this->*map[level])();
+	else 
+		 std::cout << "Invalid level: " << level << std::endl;
 }

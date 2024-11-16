@@ -2,6 +2,12 @@
 
 int main(void)
 {
-	Harl Harlos;
+	Harl harlos;
 
+	harlos.complain("debug");
+	harlos.complain("info");
+	harlos.complain("warning");
+	harlos.complain("error");
+	harlos.complain("random");
+	harlos.complain("");
 }
