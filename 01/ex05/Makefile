@@ -1,6 +1,6 @@
 ######################## SETTINGS ########################
 
-NAME = program
+NAME = Harl
 
 CC = c++
 
@@ -15,7 +15,7 @@ INCLUDES =	includes \
 
 
 SRCS_NAMES =	main.cpp \
-				utils.cpp
+				Harl.cpp
 
 SRCS_DIR = srcs/
 
