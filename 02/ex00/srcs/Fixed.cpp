@@ -31,6 +31,6 @@ void Fixed::setRawBits(int newValue)
 }
 int	Fixed::getRawBits()
 {
-	std::cout << "GetRawBits member function called" << std::endl;
+	std::cout << "GetRawBits member function callelsd" << std::endl;
 	return this->RawBits;
 }
