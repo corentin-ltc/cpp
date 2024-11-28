@@ -25,12 +25,12 @@ Fixed::Fixed(const Fixed &other) : RawBits(other.RawBits)
 	
 };
 
-void Fixed::setRawBits(int newValue)
+void Fixed::setRawBits(int const newValue)
 {
 	RawBits = newValue;
 }
-int	Fixed::getRawBits()
+int	Fixed::getRawBits(void) const
 {
-	std::cout << "GetRawBits member function callelsd" << std::endl;
+	std::cout << "GetRawBits member function called" << std::endl;
 	return this->RawBits;
 }

@@ -5,7 +5,7 @@
 
 class ClapTrap{
 	
-	private:
+	protected:
 		std::string name;
 		int health;
 		int energy;
@@ -23,4 +23,3 @@ class ClapTrap{
 };
 
 #endif
-
