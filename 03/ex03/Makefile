@@ -17,7 +17,8 @@ INCLUDES =	includes \
 SRCS_NAMES =	main.cpp \
 				ClapTrap.cpp \
 				ScavTrap.cpp \
-				FragTrap.cpp
+				FragTrap.cpp \
+				DiamondTrap.cpp
 
 SRCS_DIR = srcs/
 
