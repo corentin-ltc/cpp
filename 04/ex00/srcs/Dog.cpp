@@ -3,7 +3,7 @@
 using std::cout;
 using std::endl;
 
-Dog::Dog() : Animal("Undefined")
+Dog::Dog() : Animal("Dog")
 {
 	cout << "Dog default constructor called." << endl;
 }
@@ -33,5 +33,5 @@ Dog::~Dog()
 
 void Dog::makeSound() const
 {
-	cout << "Miaw miaw" << endl;
+	cout << "Waf" << endl;
 }

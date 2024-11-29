@@ -6,7 +6,7 @@ CC = c++
 
 FLAGS = -Wall -Wextra -Werror
 
-EXTRAFLAGS = -std=c++98
+EXTRAFLAGS = -std=c++98 -pedantic
 
 INCLUDES =	includes \
 			${foreach lib, ${LIBS}, ${lib} ${lib}/includes}
@@ -17,7 +17,10 @@ INCLUDES =	includes \
 SRCS_NAMES =	main.cpp \
 				Animal.cpp \
 				Dog.cpp \
-				Cat.cpp
+				Cat.cpp \
+				WrongAnimal.cpp \
+				WrongDog.cpp \
+				WrongCat.cpp 
 
 SRCS_DIR = srcs/
 

@@ -3,7 +3,7 @@
 using std::cout;
 using std::endl;
 
-Cat::Cat() : Animal("Undefined")
+Cat::Cat() : Animal("Cat")
 {
 	cout << "Cat default constructor called." << endl;
 }
@@ -31,7 +31,7 @@ Cat::~Cat()
 	cout << "Cat destructor called." << endl;
 }
 
-void const Cat::makeSound()
+void Cat::makeSound() const
 {
 	cout << "Miaw miaw" << endl;
 }
