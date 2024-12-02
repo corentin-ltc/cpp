@@ -1,18 +1,13 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void)
 {
-	try
-	{
-		Bureaucrat test("Test");
+	Bureaucrat	bureaucrat("Laurent");
+	Form		form("Formulaire A1", 150, 150);
+	Form		form2("Formulaire A2", 1, 150);
 
-		for (int i = 0; i < 140; i++)
-			test.incrementGrade();
-		std::cout << test;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+	form.signForm(bureaucrat);
+	form2.signForm(bureaucrat);
 	
 }

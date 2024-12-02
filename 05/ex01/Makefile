@@ -1,6 +1,6 @@
 ######################## SETTINGS ########################
 
-NAME = Bureaucrat
+NAME = form
 
 CC = c++
 
@@ -15,7 +15,8 @@ INCLUDES =	includes \
 
 
 SRCS_NAMES =	main.cpp \
-				Bureaucrat.cpp 
+				Bureaucrat.cpp \
+				Form.cpp
 
 SRCS_DIR = srcs/
 
