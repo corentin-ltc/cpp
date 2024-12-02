@@ -1,0 +1,74 @@
+######################## SETTINGS ########################
+
+NAME = Materia
+
+CC = c++
+
+FLAGS = -Wall -Wextra -Werror
+
+EXTRAFLAGS = -std=c++98 -pedantic
+
+INCLUDES = includes \
+			${foreach lib, ${LIBS}, ${lib}/includes}
+
+HEADERS = includes/AMateria.hpp \
+          includes/Character.hpp \
+          includes/Cure.hpp \
+          includes/Ice.hpp \
+          includes/ICharacter.hpp \
+          includes/IMateriaSource.hpp \
+          includes/MateriaSource.hpp
+
+######################## SOURCES ########################
+
+SRCS_NAMES =	main.cpp \
+				AMateria.cpp \
+				Character.cpp \
+				Cure.cpp \
+				Ice.cpp \
+				MateriaSource.cpp
+
+SRCS_DIR = srcs/
+
+SRCS = ${addprefix ${SRCS_DIR}, ${SRCS_NAMES}}
+
+OBJS_DIR = objs/
+
+OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.cpp=.o}}
+
+######################## BASIC RULES ########################
+
+all : ${NAME}
+
+re : fclean
+	${MAKE} all
+
+clean :
+	${foreach lib, ${LIBS}, ${MAKE} clean -C ${lib}}
+	rm -rf ${OBJS_DIR}
+
+fclean : clean
+	${foreach lib, ${LIBS}, ${MAKE} fclean -C ${lib}}
+	rm -f ${NAME}
+
+######################## COMPILATION ########################
+
+${NAME} : ${HEADERS} ${OBJS_DIR} ${OBJS}
+	${foreach lib, ${LIBS}, ${MAKE} -C ${lib}}
+	${CC} ${FLAGS} ${OBJS} ${foreach lib, ${LIBS},${lib}/${lib}.a} -o $@ ${EXTRAFLAGS}
+
+${OBJS_DIR} :
+	mkdir -p $@
+
+${OBJS_DIR}%.o : ${SRCS_DIR}%.cpp ${HEADERS}
+	${CC} ${FLAGS} ${EXTRAFLAGS} ${CPPFLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@
+
+######################## TEST ########################
+
+test : base
+
+base : all
+	./${NAME}
+
+leak : all
+	valgrind --leak-check=full --show-leak-kinds=all ./${NAME}
