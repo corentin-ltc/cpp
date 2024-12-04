@@ -1,13 +1,23 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-int main(void)
+int main()
 {
-	Bureaucrat	bureaucrat("Laurent");
-	Form		form("Formulaire A1", 150, 150);
-	Form		form2("Formulaire A2", 1, 150);
+    Bureaucrat bob("Bob", 50);
+    ShrubberyCreationForm shrub("Home");
+    RobotomyRequestForm robot("Target");
+    PresidentialPardonForm pardon("Target");
 
-	form.signForm(bureaucrat);
-	form2.signForm(bureaucrat);
-	
+
+    bob.signForm(shrub);
+    bob.executeForm(shrub);
+    
+    bob.signForm(robot);
+    bob.executeForm(robot);
+    
+    bob.signForm(pardon);
+    bob.executeForm(pardon);
+    return 0;
 }

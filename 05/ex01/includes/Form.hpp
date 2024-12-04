@@ -48,7 +48,7 @@ class Form
         
         int getGradeToExecute(void) const;
         int getGradeToSign(void) const;
-        bool getSignStatus(void) const;
+        void getSignStatus(void) const;
         const std::string getName(void) const;
 };
 

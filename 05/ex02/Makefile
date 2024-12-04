@@ -16,7 +16,10 @@ INCLUDES =	includes \
 
 SRCS_NAMES =	main.cpp \
 				Bureaucrat.cpp \
-				Form.cpp
+				AForm.cpp \
+				RobotomyRequestForm.cpp \
+				ShrubberyCreationForm.cpp \
+				PresidentialPardonForm.cpp
 
 SRCS_DIR = srcs/
 
