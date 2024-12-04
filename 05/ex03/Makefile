@@ -1,6 +1,6 @@
 ######################## SETTINGS ########################
 
-NAME = forms
+NAME = intern
 
 CC = c++
 
@@ -19,7 +19,8 @@ SRCS_NAMES =	main.cpp \
 				AForm.cpp \
 				RobotomyRequestForm.cpp \
 				ShrubberyCreationForm.cpp \
-				PresidentialPardonForm.cpp
+				PresidentialPardonForm.cpp \
+				Intern.cpp
 
 SRCS_DIR = srcs/
 
