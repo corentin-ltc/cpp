@@ -2,22 +2,25 @@
 #include <iomanip>
 #include <stdexcept>
 #include <string>
-#include <utility>
+#include <sstream>
+#include <limits>
+#include <cmath>
 
 class ScalarConverter
 {
-	public:
-		ScalarConverter();
-		virtual ~ScalarConverter();
+private:
+    // Prevent instantiation of the class
+    ScalarConverter();
+    ScalarConverter(const ScalarConverter&);
+    ScalarConverter& operator=(const ScalarConverter&);
+    ~ScalarConverter();
 
-		class ImpossibleConversionException : public std::exception
-		{
-			const char *what() const throw()
-			{
-				return "Conversion is impossible.";
-			}
-		};
+    static bool isPseudoLiteral(const std::string& str);
+    static bool isCharLiteral(const std::string& str);
+    static bool isFloatLiteral(const std::string& str);
+    static bool isIntLiteral(const std::string& str);
 
-		static void convert(std::string str);
-
+public:
+    static void convert(const std::string& str);
 };
+

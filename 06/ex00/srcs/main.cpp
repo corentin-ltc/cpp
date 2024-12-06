@@ -12,5 +12,12 @@ int main(int argc, char const *argv[])
 		return(1);
 	}
 	ScalarConverter::convert(argv[1]);
-	return 0;
+    ScalarConverter::convert("'c'");
+    ScalarConverter::convert("42");
+    ScalarConverter::convert("4.2f");
+    ScalarConverter::convert("4.2");
+    ScalarConverter::convert("-inff");
+    ScalarConverter::convert("+inf");
+    ScalarConverter::convert("nanf");
+    return 0;
 }
