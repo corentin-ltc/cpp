@@ -11,6 +11,6 @@ int main(void)
     test2 = s.deserialize(intptr);
 
     std::cout << test2->getName() << std::endl;
-
+    delete test;
     return 0;
 }
