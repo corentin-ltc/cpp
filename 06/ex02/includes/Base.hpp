@@ -9,8 +9,8 @@ class Base
         Base(){};
         virtual ~Base(){};
         Base * generate(void);
-        virtual void identify(Base* p) const;
-        virtual void identify(Base& p) const;
+        virtual void identify(Base* p);
+        virtual void identify(Base& p);
 };
 
 #endif 

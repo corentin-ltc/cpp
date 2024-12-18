@@ -7,7 +7,5 @@ class A : public Base
     public:
         A() : name("A"){};
         ~A(){};
-        void identify(Base* p){std::cout << "Type is A" << std::endl;};
-        void identify(Base& p){std::cout << "Type is A" << std::endl;};
 
 };
