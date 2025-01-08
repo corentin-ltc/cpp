@@ -15,15 +15,13 @@ void displaySTR(std::string str)
 int main( void )
 {
 
-    std::string strs[5] = {
-	"Bonjour",
-	"je",
-	"m'appelle",
-	"Corentin",
-    "LT"
-	};
-	iter(strs, 5, displaySTR);
     int array[] = {1, 2, 3, 4};
     iter(array, 4, randomFunction);
+    std::string strs[3] = {
+	"Hola",
+	"Que",
+	"Tal ?"
+	};
+	iter(strs, 3, displaySTR);
     return 0;
 }
