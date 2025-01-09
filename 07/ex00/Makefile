@@ -6,7 +6,7 @@ CC = c++
 
 FLAGS = -Wall -Wextra -Werror
 
-EXTRAFLAGS = -std=c++98 -pedantic
+EXTRAFLAGS = -std=c++98 
 
 INCLUDES =	includes \
 			${foreach lib, ${LIBS}, ${lib} ${lib}/includes}

@@ -1,12 +1,12 @@
 #include "iter.hpp"
 #include <iostream>
 
-void randomFunction(int a)
+void randomFunction(int &a)
 {
     std::cout << a << std::endl;
 }
 
-void displaySTR(std::string str)
+void displaySTR(std::string &str)
 {
     std::cout << str << std::endl;
 }

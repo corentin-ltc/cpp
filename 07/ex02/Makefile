@@ -1,6 +1,6 @@
 ######################## SETTINGS ########################
 
-NAME = template
+NAME = array
 
 CC = c++
 

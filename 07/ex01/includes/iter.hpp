@@ -1,9 +1,8 @@
-#ifndef ITER_HPP
-#define ITER_HPP
+#pragma once
 
 
-template <typename T>
-void iter(T *tab, int size, void(*f)(T))
+template <typename T, typename U>
+void iter(T *tab, int size, void(*f)(U&))
 {
     int i = 0;
 
@@ -13,5 +12,3 @@ void iter(T *tab, int size, void(*f)(T))
         i++;
     }
 }
-
-#endif
