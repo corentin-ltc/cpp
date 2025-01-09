@@ -8,32 +8,25 @@
 
 
 template <typename T>
-class MutantStack
+class MutantStack : public std::stack
 {
-    private:
-        std::stack<T> _stack;
     public:
+
+        using std::stack<T>::c;
+
 		MutantStack();
 		MutantStack(const MutantStack &other);
 		~MutantStack();
 		MutantStack &operator=(const MutantStack &other);      
-        void push(int nb);
-        void pop(void);
-        int size(void);
-        T top(void);
-        T* begin(void); 
-        T* end(void); 
-    
+
 };
 
 template <class T>
-MutantStack<T>::MutantStack(){}
+MutantStack<T>::MutantStack() : std::stack<T>(){}
 
 template <class T>
-MutantStack<T>::MutantStack(const MutantStack &other)
-{
-    _stack = other._stack;
-}
+MutantStack<T>::MutantStack(const MutantStack &other) : std::stack<T>(other) {}
+
 template <class T>
 MutantStack<T>::~MutantStack(){}
 
@@ -41,30 +34,6 @@ template <class T>
 MutantStack<T> &MutantStack<T>::operator=(const MutantStack &other)
 {
     if (this != &other)
-        _stack = other._stack;
+        std::stack<T>::operator=(other);
     return (*this);
-}
-
-template <class T>
-void MutantStack<T>::push(int nb)
-{
-    _stack.push(nb);
-}
-
-template <class T>
-void MutantStack<T>::pop(void)
-{
-    _stack.pop();
-}
-
-template <class T>
-int MutantStack<T>::size(void)
-{
-    return _stack.size();
-}
-
-template <class T>
-T MutantStack<T>::top(void)
-{
-    return _stack.top();
 }
