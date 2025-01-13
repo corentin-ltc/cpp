@@ -15,7 +15,7 @@ INCLUDES =	includes \
 
 
 SRCS_NAMES =	main.cpp \
-				#BitcoinExchange
+				BitcoinExchange.cpp
 
 SRCS_DIR = srcs/
 
