@@ -32,8 +32,17 @@ class Span
                     return "Not enough elements";
                 }
         };
+        class IncorrectRangeException : public std::exception
+        {
+            public:
+                const char *what() const throw()
+                {
+                    return "Can't add this range in the container";
+                }
+        };
         int shortestSpan();
         int longestSpan();
         void addNumber(int nb);
+        void addNumbers(int start, int end);
     
 };

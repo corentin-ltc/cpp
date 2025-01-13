@@ -51,3 +51,20 @@ void Span::addNumber(int nb)
     else
         throw TooManyElementsException();
 }
+
+void Span::addNumbers(int start, int end)
+{
+    if (start > end)
+        throw IncorrectRangeException();
+    if (_vec.size() + (end - start) < _size_max)
+    {
+        while(start <= end)
+        {
+            _vec.push_back(start);
+            start++;
+        }
+    }
+    else
+        throw TooManyElementsException();
+}
+
