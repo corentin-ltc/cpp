@@ -1,44 +1,21 @@
-#include <Span.hpp>
+#include "RPN.hpp"
 
-using std::endl;
-using std::cout;
-
-int main(void)
+int main(int argc, char* argv[])
 {
-    Span span(15000);
-
+    if (argc != 2)
+    {
+        std::cerr << "Usage: ./RPN \"<expression>\"" << std::endl;
+        return 1;
+    }   
     try
     {
-        for (int i = 0; i < 15000; i++)
-            span.addNumber(i);
+        int result = RPN::evaluate(argv[1]);
+        std::cout << result << std::endl;
     }
-    catch(const std::exception& e)
+    catch (const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
-    }
-    
-    cout << "Shortest span = " << span.shortestSpan() << endl;
-    cout << "Longest span = " << span.longestSpan() << endl;
-
-    Span span2(15000);
-    try
-    {
-        span2.addNumber(14);
-        span2.addNumber(18);
-        span2.addNumber(52);
-        span2.addNumber(3);
-        span2.addNumber(0);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    
-    cout << "Shortest span = " << span2.shortestSpan() << endl;
-    cout << "Longest span = " << span2.longestSpan() << endl;
-
-    span2 = span;
-
-    cout << "Shortest span = " << span2.shortestSpan() << endl;
-    cout << "Longest span = " << span2.longestSpan() << endl;
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }   
+    return 0;
 }

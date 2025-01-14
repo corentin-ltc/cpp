@@ -1,6 +1,6 @@
 ######################## SETTINGS ########################
 
-NAME = span
+NAME = RPN
 
 CC = c++
 
@@ -15,7 +15,7 @@ INCLUDES =	includes \
 
 
 SRCS_NAMES =	main.cpp \
-				Span.cpp
+				RPN.cpp
 
 SRCS_DIR = srcs/
 
