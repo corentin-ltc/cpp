@@ -23,11 +23,11 @@ int main(void)
     Span span2(1500);
     try
     {
-        span2.addNumber(14);
-        span2.addNumber(18);
-        span2.addNumber(52);
+        span2.addNumber(6);
         span2.addNumber(3);
-        span2.addNumber(0);
+        span2.addNumber(17);
+        span2.addNumber(9);
+        span2.addNumber(11);
         span2.addNumbers(18, 89);
     }
     catch(const std::exception& e)

@@ -30,7 +30,17 @@ int Span::shortestSpan()
     if (sorted.size() < 2)
         throw NotEnoughElementsException();
     else
-        return (sorted[1] - sorted[0]);
+    {
+        int minSpan = sorted[1] - sorted[0];
+        long unsigned int i = 1;
+        while (i < sorted.size() - 1)
+        {
+            if (sorted[i + 1] - sorted[i] < minSpan)
+                minSpan = sorted[i + 1] - sorted[i];
+            i++;
+        }
+        return (minSpan);
+    }
 }
 
 int Span::longestSpan()
