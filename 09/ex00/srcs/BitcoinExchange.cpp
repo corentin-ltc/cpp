@@ -80,7 +80,7 @@ void BitcoinExchange::processInput(char **av, std::map<std::string, float> btcPr
             continue;
         }
         std::map<std::string, float>::iterator closest = btcPrices.end();
-        for (std::map<std::string, float>::iterator it = btcPrices.begin() ; it !=btcPrices.end(); it++)
+        for (std::map<std::string, float>::iterator it = btcPrices.begin() ; it != btcPrices.end(); it++)
         {
             if (it->first > date)
                 break;

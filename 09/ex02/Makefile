@@ -1,6 +1,6 @@
 ######################## SETTINGS ########################
 
-NAME = mutant
+NAME = PmergeMe
 
 CC = c++
 
@@ -14,7 +14,8 @@ INCLUDES =	includes \
 ######################## SOURCES ########################
 
 
-SRCS_NAMES =	main.cpp
+SRCS_NAMES =	main.cpp \
+				PmergeMe.cpp
 
 SRCS_DIR = srcs/
 
