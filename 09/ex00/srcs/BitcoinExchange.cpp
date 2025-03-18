@@ -3,6 +3,11 @@
 using std::cout;
 using std::endl;
 
+BitcoinExchange::BitcoinExchange() {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &src){ (void)src; }
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &src) { (void)src; return (*this); }
+BitcoinExchange::~BitcoinExchange() {}
+
 void BitcoinExchange::exit_msg(std::string msg, std::string msg2 = "")
 {
     cout << msg << msg2 << endl;

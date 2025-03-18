@@ -11,9 +11,11 @@
 
 class PmergeMe
 {
-    private:
-        PmergeMe();
     public:
+        PmergeMe();
+        PmergeMe(const PmergeMe &other);
+        PmergeMe& operator=(const PmergeMe &other);
+        ~PmergeMe();
         static void printContainer(const std::vector<int>& container);
         static void printContainer(const std::deque<int>& container);
         static std::vector<int> mergeInsertSort(std::vector<int>& arr);
