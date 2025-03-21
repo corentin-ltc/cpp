@@ -1,4 +1,5 @@
 #include "RPN.hpp"
+#include <limits.h>
 
 RPN::RPN() {}
 RPN::RPN(const RPN &other){ (void)other; }
@@ -59,20 +60,40 @@ bool RPN::isNumber(const std::string& token)
     return true;
 }
 
+
 int RPN::applyOperator(int a, int b, const std::string& op)
 {
-    if (op == "+")
+    if (op == "+") {
+        if ((b > 0 && a > INT_MAX - b) || 
+            (b < 0 && a < INT_MIN - b)) {
+            throw std::runtime_error("Error: Integer overflow in addition.");
+        }
         return a + b;
-    else if (op == "-")
+    } 
+    else if (op == "-") {
+        if ((b < 0 && a > INT_MAX + b) || 
+            (b > 0 && a < INT_MIN + b)) {
+            throw std::runtime_error("Error: Integer overflow in subtraction.");
+        }
         return a - b;
-    else if (op == "*")
+    } 
+    else if (op == "*") {
+        if (a > 0 && b > 0 && a > INT_MAX / b)
+            throw std::runtime_error("Error: Integer overflow in multiplication.");
+        if (a > 0 && b < 0 && b < INT_MIN / a)
+            throw std::runtime_error("Error: Integer overflow in multiplication.");
+        if (a < 0 && b > 0 && a < INT_MIN / b)
+            throw std::runtime_error("Error: Integer overflow in multiplication.");
+        if (a < 0 && b < 0 && a < INT_MAX / b)
+            throw std::runtime_error("Error: Integer overflow in multiplication.");
         return a * b;
-    else if (op == "/")
-    {
+    } 
+    else if (op == "/") {
         if (b == 0)
             throw std::runtime_error("Error: Division by zero.");
+        if (a == INT_MIN && b == -1)
+            throw std::runtime_error("Error: Integer overflow in division.");
         return a / b;
     }
     throw std::runtime_error("Error: Unknown operator.");
 }
-

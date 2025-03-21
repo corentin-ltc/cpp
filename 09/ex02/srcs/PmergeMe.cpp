@@ -27,16 +27,16 @@ std::vector<int> PmergeMe::mergeInsertSort(std::vector<int>& arr) {
     std::vector<int> left(arr.begin(), arr.begin() + arr.size() / 2);
     std::vector<int> right(arr.begin() + arr.size() / 2, arr.end());
 //    std::cout << "left :";
-    printContainer(left);
+//    printContainer(left);
 //    std::cout << "right :";
-    printContainer(right);
+//   printContainer(right);
     left = mergeInsertSort(left);
     right = mergeInsertSort(right);
     
     std::vector<int> merged;
     std::merge(left.begin(), left.end(), right.begin(), right.end(), std::back_inserter(merged));
 //    std::cout << "merged :";
-    printContainer(merged);
+//    printContainer(merged);
     return merged;
 }
 

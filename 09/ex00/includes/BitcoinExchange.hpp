@@ -16,9 +16,11 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &other);
         ~BitcoinExchange();
 
-        static std::map<std::string, float> getBtcPrice();
+        static      std::map<std::string, float> getBtcPrice();
         static void processInput(char **av, std::map<std::string, float> btcPrices);
         static void exit_msg(std::string msg, std::string msg2);
+        static bool dateIsValid(std::string date);
+
 };
 
 

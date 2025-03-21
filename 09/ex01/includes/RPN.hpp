@@ -5,6 +5,7 @@
 #include <sstream>
 #include <stdlib.h>
 #include <stdexcept>
+#include <limits.h>
 
 class RPN
 {

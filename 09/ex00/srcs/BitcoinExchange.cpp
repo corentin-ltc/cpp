@@ -38,6 +38,13 @@ std::map<std::string, float> BitcoinExchange::getBtcPrice()
         date = line.substr(0, separatorPos);
         value = line.substr(separatorPos + 1);
         date.erase(date.find_last_not_of(" \t\n\r\f\v") + 1);
+        if (!BitcoinExchange::dateIsValid(date))
+        {
+            cout << "Error: Date is not valid." << endl;
+            exit(1);
+            continue;
+        }
+
         value.erase(0, value.find_first_not_of(" \t\n\r\f\v"));
         float price = std::atof(value.c_str());
         if (price < 0) {
@@ -49,6 +56,37 @@ std::map<std::string, float> BitcoinExchange::getBtcPrice()
     }
     BtcFile.close();
     return btcPrices;
+}
+
+bool BitcoinExchange::dateIsValid(std::string date)
+{
+    if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+        return false;
+    
+    int year, month, day;
+    try {
+        year = std::atoi(date.substr(0, 4).c_str());
+        month = std::atoi(date.substr(5, 2).c_str());
+        day = std::atoi(date.substr(8, 2).c_str());
+    } catch (...) {
+        return false;
+    }
+    
+    if (year < 2009 || year > 2100)
+        return false;
+    if (month < 1 || month > 12)
+        return false;
+    
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    
+    // Leap year check
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+        daysInMonth[1] = 29;
+    
+    if (day < 1 || day > daysInMonth[month - 1])
+        return false;
+    
+    return true;
 }
 
 void BitcoinExchange::processInput(char **av, std::map<std::string, float> btcPrices)
@@ -74,10 +112,17 @@ void BitcoinExchange::processInput(char **av, std::map<std::string, float> btcPr
         date = line.substr(0, separatorPos);
         value = line.substr(separatorPos + 1);
         date.erase(date.find_last_not_of(" \t\n\r\f\v") + 1);
+        if (!BitcoinExchange::dateIsValid(date))
+        {
+            cout << "Error: Date is not valid." << endl;
+            continue;
+        }
         value.erase(0, value.find_first_not_of(" \t\n\r\f\v"));
+        std::cout << "date = " << date << std::endl;
+        
         float multiplicator = std::atof(value.c_str());
-        if (multiplicator <= 0) {
-            cout << "Error: Not a positive number." << endl;
+        if (multiplicator < 0 || multiplicator > 1000) {
+            cout << "Error: number has to be between 0 and 1000." << endl;
             continue;
         }
         if (multiplicator > 2147483647.0) {
