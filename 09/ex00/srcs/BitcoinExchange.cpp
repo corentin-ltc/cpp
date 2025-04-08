@@ -118,8 +118,17 @@ void BitcoinExchange::processInput(char **av, std::map<std::string, float> btcPr
             continue;
         }
         value.erase(0, value.find_first_not_of(" \t\n\r\f\v"));
-        std::cout << "date = " << date << std::endl;
-        
+        bool not_valid = false;
+        for (std::string::iterator it = value.begin(); it != value.end(); it++)
+        {
+            if (*it != '.' && (*it < '0' || *it > '9'))
+            {
+                cout << "Error: multiplicator is not valid" << endl;
+                not_valid = true;
+            }
+        }
+        if (not_valid)
+            continue;
         float multiplicator = std::atof(value.c_str());
         if (multiplicator < 0 || multiplicator > 1000) {
             cout << "Error: number has to be between 0 and 1000." << endl;
