@@ -10,8 +10,10 @@ BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::exit_msg(std::string msg, std::string msg2 = "")
 {
-    cout << msg << msg2 << endl;
-    exit(1);
+    std::string error;
+    error = msg + msg2 + '\n';
+    throw
+        error;
 }
 
 std::map<std::string, float> BitcoinExchange::getBtcPrice()
@@ -125,6 +127,7 @@ void BitcoinExchange::processInput(char **av, std::map<std::string, float> btcPr
             {
                 cout << "Error: multiplicator is not valid" << endl;
                 not_valid = true;
+                break;
             }
         }
         if (not_valid)

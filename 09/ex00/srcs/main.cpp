@@ -9,8 +9,17 @@ int main(int ac, char **av)
 
     if (ac != 2)
         BitcoinExchange::exit_msg("Please use the right syntax: \"./btc <filename>\".", "");
-    btcPrices =  BitcoinExchange::getBtcPrice();
-    BitcoinExchange::processInput(av, btcPrices);
+
+    try
+    {
+        btcPrices =  BitcoinExchange::getBtcPrice();
+        BitcoinExchange::processInput(av, btcPrices);
+    }
+    catch(...)
+    {
+        ;
+    }
+    
 
     return 0;
 }
